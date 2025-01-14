@@ -57,8 +57,10 @@ fig_scatter.update_layout(
     )
 )
 
-# Display the scatter plot
-st.plotly_chart(fig_scatter)
+# Add a checkbox to control the visibility of the scatter plot
+show_scatter = st.checkbox("Show Price vs Odometer Scatter Plot")
+if show_scatter:
+    st.plotly_chart(fig_scatter)
 
 # Add the explanation text under the scatter plot
 st.write("""
