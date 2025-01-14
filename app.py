@@ -8,7 +8,8 @@ cars_df = pd.read_csv('vehicles_us.csv')
 # Add a header
 st.header("Car Advertisement Analysis Dashboard")
 
-# Create and display the histogram of car prices (adjusted layout)
+# Add a title and display the histogram of car prices (adjusted layout)
+st.title("Car Price Distribution")
 fig_hist = px.histogram(cars_df, x='price', nbins=40, title='Car Price Distribution', 
                          range_x=[0, cars_df['price'].max() * 0.95])  # Adjusted price range
 
@@ -22,7 +23,17 @@ fig_hist.update_layout(
 # Display the histogram
 st.plotly_chart(fig_hist)
 
-# Create and display the scatter plot for price vs odometer (adjusted layout)
+# Add the explanation text under the histogram
+st.write("""
+The car price distribution histogram reveals the frequency of car listings across different price ranges in the dataset. 
+With the majority of prices concentrated in lower ranges, this indicates that most cars are listed at more affordable prices, 
+while higher price ranges show fewer listings. This suggests a skewed distribution, where most cars are priced lower, 
+and only a small portion of listings are in the higher price bracket. The plot provides valuable insights into the overall 
+pricing trends within the dataset.
+""")
+
+# Add a title and display the scatter plot for price vs odometer (adjusted layout)
+st.title("Price vs Odometer (Mileage) Scatter Plot")
 fig_scatter = px.scatter(cars_df, x='odometer', y='price', color='condition', 
                          title='Price vs Odometer (Mileage)', 
                          labels={'odometer': 'Odometer (miles)', 'price': 'Price'})
@@ -48,3 +59,11 @@ fig_scatter.update_layout(
 
 # Display the scatter plot
 st.plotly_chart(fig_scatter)
+
+# Add the explanation text under the scatter plot
+st.write("""
+The scatter plot of price versus odometer (mileage) with color coding based on car condition highlights the relationship 
+between a vehicle's mileage and its price. Generally, higher-mileage cars tend to have lower prices, though exceptions exist, 
+particularly with cars in better condition. This visualization provides insight into how both mileage and condition influence 
+the pricing of cars in the dataset.
+""")
