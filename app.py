@@ -2,10 +2,6 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-import streamlit as st
-import pandas as pd
-import plotly.express as px
-
 # Load the dataset into a DataFrame
 cars_df = pd.read_csv('vehicles_us.csv')
 
@@ -23,8 +19,8 @@ fig_hist.update_layout(
     margin=dict(t=50, b=150, l=50, r=50)  # Adjust margins to prevent overlap
 )
 
-# Display the histogram
-st.plotly_chart(fig_hist)
+# Display the histogram with a unique key
+st.plotly_chart(fig_hist, key="histogram_plot")
 
 # Create and display the scatter plot for price vs odometer (adjusted layout)
 fig_scatter = px.scatter(cars_df, x='odometer', y='price', color='condition', 
@@ -50,10 +46,10 @@ fig_scatter.update_layout(
     )
 )
 
-# Display the scatter plot
-st.plotly_chart(fig_scatter)
+# Display the scatter plot with a unique key
+st.plotly_chart(fig_scatter, key="scatter_plot")
 
 # Add a checkbox to control the visibility of the scatter plot
 show_scatter = st.checkbox("Show Price vs Odometer Scatter Plot")
 if show_scatter:
-    st.plotly_chart(fig_scatter)
+    st.plotly_chart(fig_scatter, key="scatter_plot_checkbox")  # Unique key for the checkbox-controlled scatter plot
